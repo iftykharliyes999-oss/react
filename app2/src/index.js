@@ -11,5 +11,11 @@ root.render(
     <App /> {/* 👈 এখান থেকে <BrowserRouter> একদম মুছে ফেলেছি */}
   </React.StrictMode>
 );
+// const abc = ReactDOM.createRoot(document.getElementById(abc));
+// root.render(
+//   <React.StrictMode> 
+//     <car brand="toyota" color="red"/>
+//   </React.StrictMode>
+// );
 
 reportWebVitals();
