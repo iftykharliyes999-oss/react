@@ -110,6 +110,19 @@ export default function Header() {
                 contact
               </Link>
             </li>
+            {/* LIST */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/lists">
+                ALL LISTS
+              </Link>
+            </li>
+            {/* Forms */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/forms">
+                Forms
+              </Link>
+            </li>
+
 
           </ul>
 
