@@ -122,6 +122,11 @@ export default function Header() {
                 Forms
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/data">
+                DISPLAY DATA
+              </Link>
+            </li>
 
 
           </ul>
