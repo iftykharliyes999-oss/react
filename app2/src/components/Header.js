@@ -128,6 +128,12 @@ export default function Header() {
               </Link>
             </li>
 
+            <li className="nav-item">
+              <Link className="nav-link" to="/userlist">
+                USER LIST
+              </Link>
+            </li>
+
 
           </ul>
 

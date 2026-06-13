@@ -12,6 +12,7 @@ import Eventes from "./Pages/Eventes";
 import Lists from "./Pages/Lists";
 import Forms from "./Pages/Forms";
 import DisplayData from "./Pages/DisplayData";
+import UserList from "./Pages/UserList";
 
 function Layout() {
   return (
@@ -36,6 +37,7 @@ export default function Allroutes() {
           <Route path="lists" element={<Lists />} />
           <Route path="forms" element={<Forms />} />
           <Route path="data" element={<DisplayData />} />
+          <Route path="userlist" element={<UserList />} />
 
           
     
