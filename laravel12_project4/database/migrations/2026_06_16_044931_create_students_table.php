@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
+// use function Laravel\Prompts\table;
 
 return new class extends Migration
 {
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female','others']);
             $table->string('phone',20)->nullable();
             $table->string('email',50)->unique();
-            $table->tinyInteger('district');
+            $table->string('district',100);
             $table->string('subjects',100)->nullable();
 
 

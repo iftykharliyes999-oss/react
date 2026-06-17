@@ -35,7 +35,7 @@
                     
                 
 
-                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="../assets/images/ecommerce/product-1.jpg" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">Paid</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><button class="btn btn-light btn-sm" type="button">View</button></td></tr>
+                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="../assets/images/ecommerce/product-1.jpg" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">{{$student->gender}}</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><button class="btn btn-light btn-sm" type="button">View</button></td></tr>
               @endforeach
             </tbody></table></div>
           </section>
