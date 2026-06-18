@@ -26,23 +26,17 @@
             <section class="row g-3">
                 <div class="col-12 col-xl-12">
 
-                  @if ($errors->any())
-                  <div class="allert altert-danger">
+              @if ($errors->any())
+    <div class="alert alert-danger">
+        <h3>Whoops! There were some problems with your input.</h3>
 
-                    <h3>Whoops! There were some problems with your input.</h3>
-
-                    <ul>
-
-                      @foreach ($errors->all() as $errors)
-
-                        <li>{{$error}}</li>
-                          
-                      @endforeach
-
-                    </ul>
-                  </div>
-                      
-                  @endif
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                     <form class="panel needs-validation" method="POST"  action="{{route('student.store')}}" novalidate>
 
                       @csrf
@@ -56,7 +50,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label" for="name">Student Name</label>
-                                <input class="form-control" id="name" name="name" type="text" required>
+                                <input class="form-control" id="name" name="name" type="text" required value="{{old('name')}}">
                                 <div class="invalid-feedback">Student name is required.</div>
                             </div>
                             <div class="col-md-6">
@@ -64,28 +58,28 @@
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="male"
-                                        value="male" required>
+                                        value="male" {{old('gender')=='male' ? 'checked':''}} required>
                                     <label class="form-check-label" for="male">Male</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="female"
-                                        value="female">
+                                        value="female" {{old('gender')=='female' ? 'checked':''}}>
                                     <label class="form-check-label" for="female">Female</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="others"
-                                        value="others">
+                                        value="others" {{old('gender')=='male' ? 'others':''}}>
                                     <label class="form-check-label" for="others">Others</label>
                                 </div>
                             </div>
                             <div class="col-md-6"><label class="form-label" for="email">Email</label><input
-                                    class="form-control" id="email" name="email" type="email" required>
+                                    class="form-control" id="email" name="email" type="email" value="{{old('email')}}" required>
                                 <div class="invalid-feedback">Enter a valid email.</div>
                             </div>
                             <div class="col-md-6"><label class="form-label" for="phone">Phone</label><input
-                                    class="form-control" id="phone" name="phone" type="tel" required>
+                                    class="form-control" id="phone" name="phone" type="tel" value="{{old('phone')}}" required>
                                 <div class="invalid-feedback">Phone number is required.</div>
                             </div>
                             <div class="col-md-6">
@@ -93,14 +87,14 @@
 
                                 <select class="form-select" id="district" name="district" required>
                                     <option value="">Choose District</option>
-                                    <option value="1">Dhaka</option>
-                                    <option value="2">Chattogram</option>
-                                    <option value="3">Rajshahi</option>
-                                    <option value="4">Khulna</option>
-                                    <option value="5">Barishal</option>
-                                    <option value="6">Sylhet</option>
-                                    <option value="7">Rangpur</option>
-                                    <option value="8">Mymensingh</option>
+                                    <option value="1" {{old('district')=='1' ? 'selected':''}}>Dhaka</option>
+                                    <option value="2" {{old('district')=='2' ? 'selected':''}}>Chattogram</option>
+                                    <option value="3" {{old('district')=='3' ? 'selected':''}}>Rajshahi</option>
+                                    <option value="4" {{old('district')=='4' ? 'selected':''}}>Khulna</option>
+                                    <option value="5" {{old('district')=='5' ? 'selected':''}}>Barishal</option>
+                                    <option value="6" {{old('district')=='6' ? 'selected':''}}>Sylhet</option>
+                                    <option value="7" {{old('district')=='7' ? 'selected':''}}>Rangpur</option>
+                                    <option value="8" {{old('district')=='8' ? 'selected':''}}>Mymensingh</option>
                                 </select>
 
                                 <div class="invalid-feedback">Choose a district.</div>
@@ -110,32 +104,32 @@
                                     <label class="form-label d-block">Subjects</label>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="subjects" value="Bangla"
-                                            id="bangla">
+                                        <input class="form-check-input" type="checkbox" name="subjects[]" value="Bangla"
+                                            id="bangla" {{ in_array('Bangla', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="bangla">Bangla</label>
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="subjects"
-                                            value="English" id="english">
+                                        <input class="form-check-input" type="checkbox" name="subjects[]"
+                                            value="English" id="english" {{ in_array('English', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="english">English</label>
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="subjects" value="Math"
-                                            id="math">
+                                        <input class="form-check-input" type="checkbox" name="subjects[]" value="Math"
+                                            id="math" {{ in_array('Math', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="math">Math</label>
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="subjects"
-                                            value="Science" id="science">
+                                        <input class="form-check-input" type="checkbox" name="subjects[]"
+                                            value="Science" id="science" {{ in_array('Science', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="science">Science</label>
                                     </div>
 
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="subjects" value="ICT"
-                                            id="ict">
+                                        <input class="form-check-input" type="checkbox" name="subjects[]" value="ICT"
+                                            id="ict" {{ in_array('ICT', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="ict">ICT</label>
                                     </div>
                                 

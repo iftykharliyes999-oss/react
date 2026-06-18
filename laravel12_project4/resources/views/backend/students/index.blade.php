@@ -24,6 +24,15 @@
           </div>
 
           <section class="panel">
+
+            @session('success')
+            <div class="alert alert-success role="alert"> 
+
+              {{$value}}
+
+            </div>
+                
+            @endsession
             <div class="d-flex justify-content-end">
     <a href="{{url('/students/create')}}"  class="btn btn-success">ADD NEW STUDENT</a>
 </div>
@@ -33,9 +42,16 @@
 
                 @foreach ($students as $student )
                     
-                
+                <form action="{{route('student.destroy',$student->id)}} " method="POST"> 
 
-                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="../assets/images/ecommerce/product-1.jpg" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">{{$student->gender}}</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><button class="btn btn-light btn-sm" type="button">View</button></td></tr>
+                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="../assets/images/ecommerce/product-1.jpg" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">{{$student->gender}}</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><a href="{{route('student.show',$student->id)}}" class="btn btn-light btn-sm" type="button">View</a>
+                
+                  @csrf
+                  <button onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i> </button>
+                  <a class="btn btn-info" href="{{route('student.edit',$student->id)}}">Edit</a>
+                
+                </form>
+                </td></tr>
               @endforeach
             </tbody></table></div>
           </section>
