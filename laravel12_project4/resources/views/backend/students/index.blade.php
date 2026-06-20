@@ -40,11 +40,11 @@
             <div class="table-responsive"><table class="table align-middle mb-0" id="ordersTable" data-searchable-table><thead><tr><th>STUDENT ID</th><th>Product</th><th>STUDENT NAME</th><th>Status</th><th>Amount</th><th>Date</th><th class="text-end">Action</th></tr></thead><tbody>
               
 
-                @foreach ($students as $student )
-                    
+                @foreach ($students as $student )0
+.                    
                 <form action="{{route('student.destroy',$student->id)}} " method="POST"> 
 
-                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="../assets/images/ecommerce/product-1.jpg" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">{{$student->gender}}</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><a href="{{route('student.show',$student->id)}}" class="btn btn-light btn-sm" type="button">View</a>
+                <tr><td class="fw-semibold">{{$student->id}}</td><td><div class="table-media"><img class="product-thumb" src="{{$student->photo}}" alt="Wireless Headset"><span>Wireless Headset</span></div></td><td>{{$student->name}}</td><td><span class="badge text-bg-success">{{$student->gender}}</span></td><td>$1,240</td><td>May 6, 2026</td><td class="text-end"><a href="{{route('student.show',$student->id)}}" class="btn btn-light btn-sm" type="button">View</a>
                 
                   @csrf
                   <button onclick="return confirm('Are you sure ?')" class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i> </button>

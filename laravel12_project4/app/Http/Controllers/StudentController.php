@@ -36,8 +36,15 @@ class StudentController extends Controller
     $request->validate([
         'name' => 'required|min:4|max:25',
         'gender' =>'required',
-        'email' => 'email|required|unique:students,email'
+        'email' => 'email|required|unique:students,email',
+        'photo' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+        
     ]);
+
+    $rand_number = rand(1,20);
+    $ext_lower = strtolower($request->photo->extension());
+    $filename = $rand_number . time() . "." . $ext_lower;
+    $request->photo->move(public_path('images'),$filename);
 
 
     $student = new Student;
@@ -47,8 +54,10 @@ class StudentController extends Controller
     $student->email = $request->email;
     $student->district = $request->district;
     $subjects = $request->subjects;
+    
 $subjects = implode(',', $subjects);
 $student->subjects = $subjects;
+$student->photo = 'images/'.$filename;
 
 $student->save();
 

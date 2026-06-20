@@ -11,5 +11,6 @@ class Student extends Model
         'gender',
         'email',
         'district',
+        'photo'
     ];
 }

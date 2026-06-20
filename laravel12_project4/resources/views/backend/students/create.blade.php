@@ -37,7 +37,7 @@
         </ul>
     </div>
 @endif
-                    <form class="panel needs-validation" method="POST"  action="{{route('student.store')}}" novalidate>
+                    <form class="panel needs-validation" method="POST" enctype="multipart/form-data"  action="{{route('student.store')}}" novalidate>
 
                       @csrf
                         <div class="panel-header">
@@ -132,6 +132,12 @@
                                             id="ict" {{ in_array('ICT', old('subjects', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="ict">ICT</label>
                                     </div>
+
+                                     <div class="col-md-6">
+                                <label class="form-label" for="photo">Student Photo</label>
+                                <input class="form-control" id="photo" name="photo" type="file" required value="{{old('name')}}">
+                                <div class="invalid-feedback">Student photo is required.</div>
+                            </div>
                                 
                             </div>
 
