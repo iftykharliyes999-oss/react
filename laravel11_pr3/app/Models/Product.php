@@ -9,5 +9,11 @@ class Product extends Model
     protected $fillable = [
             'name','category','price','status'
              
-    ];      
+    ];    
+    
+    
+
+    public function category(){ 
+        return $this->belongsTo(Category::class);
+    }
 }

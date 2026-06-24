@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backend.product.index');
+        $products = product::all();
+        return view('backend.product.index',['items' => $products]);
     }
 
     /**
@@ -20,16 +21,43 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.index');
+        return view('backend.product.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|min:4|max:25',
+        'description' => 'required',
+        'price' => 'required',
+        'status' => 'required',
+        'category' => 'required',
+        'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+    ]);
+
+    $rand_number = rand(1,20);
+    $ext_lower = strtolower($request->image->extension());
+    $filename = $rand_number . time() . "." . $ext_lower;
+
+    $request->image->move(public_path('images'), $filename);
+
+    $product = new Product;
+
+    $product->name = $request->name;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->status = $request->status;
+    $product->category = $request->category;
+    $product->image = 'images/' . $filename;
+
+    $product->save();
+
+    return redirect()->route('product.index')
+        ->with('success', 'Successfully Product Created');
+}
 
     /**
      * Display the specified resource.
