@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.create');
+            $cats = Category::all();
+        return view('backend.product.create', ['items'=>$cats]);
     }
 
     /**
@@ -30,12 +32,12 @@ class ProductController extends Controller
 public function store(Request $request)
 {
     $request->validate([
-        'name' => 'required|min:4|max:25',
+        'name' => 'required',
         'description' => 'required',
         'price' => 'required',
         'status' => 'required',
         'category' => 'required',
-        'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+        'image' => 'required',
     ]);
 
     $rand_number = rand(1,20);

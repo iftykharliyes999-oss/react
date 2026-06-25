@@ -87,10 +87,10 @@
 										
 									
 									<tr>
-										<td><img src="{{asset('assets/images/demo.png')}}" alt=""></td>
+										<td><img style="width: 50px"  src="{{asset('assets/images/grapes.jpg')}}" alt=""></td>
 										<td>{{$item->name}}</></td>
 										<td>{{$item->price}}</td>
-										<td>{{ $item->category?->cat_name ?? 'No Category' }}</td>
+										<td>{{ $item->category->cat_name}}</td>
 										<td>{{$item->status}}5</td>
 										<td>EDIT | DELETE</td>
 									</tr>
