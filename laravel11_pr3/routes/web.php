@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryAjaxController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
         route::resource('product',ProductController::class);
         route::resource('category',CategoryController::class);
+        Route::resource('category-ajax-crud',CategoryAjaxController::class);
 
 
 
